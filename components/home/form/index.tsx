@@ -114,7 +114,7 @@ const EarlyBirdForm = () => {
               <h2 className="text-2xl font-bold text-gray-100">
                 Thanks for submitting your information!
               </h2>
-              <p className="text-gray-400">We'll be in touch soon.</p>
+              <p className="text-gray-400">We will be in touch soon.</p>
             </div>
           </div>
         </div>
