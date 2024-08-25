@@ -13,27 +13,27 @@ const Feature = () => {
           Key Features
         </h2>
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          <Card className=" bg-transparent border-gray-800 text-white">
+          <Card className=" bg-transparent border-gray-800 text-white w-full">
             <CardContent className="flex flex-col items-center space-y-2 p-6">
-              <Users className="h-12 w-12 text-blue-400" />
+              <Users className="h-12 w-12 text-blue-400 " />
               <h3 className="text-xl font-bold">Connect</h3>
               <p className="text-center text-gray-400">
                 Find the perfect match between startups and skilled developers.
               </p>
             </CardContent>
           </Card>
-          <Card className=" bg-transparent border-gray-800 text-white">
+          <Card className=" bg-transparent border-gray-800 text-white w-full">
             <CardContent className="flex flex-col items-center space-y-2 p-6">
-              <Code className="h-12 w-12 text-blue-400" />
+              <Code className="h-12 w-12 text-blue-400 " />
               <h3 className="text-xl font-bold">Contribute</h3>
               <p className="text-center text-gray-400">
                 Work on exciting projects and make meaningful contributions.
               </p>
             </CardContent>
           </Card>
-          <Card className=" bg-transparent border-gray-800 text-white">
+          <Card className=" bg-transparent border-gray-800 text-white w-full">
             <CardContent className="flex flex-col items-center space-y-2 p-6">
-              <DollarSign className="h-12 w-12 text-blue-400" />
+              <DollarSign className="h-12 w-12 text-blue-400 " />
               <h3 className="text-xl font-bold">Earn</h3>
               <p className="text-center text-gray-400">
                 Get rewarded for your valuable contributions to startup

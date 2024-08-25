@@ -42,7 +42,7 @@ const formSchema = z.object({
     .string()
     .min(2, { message: "you need to fill this field champ." })
     .email("This is not a valid email hommie."),
-  name: z
+  fullName: z
     .string()
     .min(2, { message: "your name isn't that short is it? :-)." }),
   userType: z.enum(["iam", "developer", "startup"]),
@@ -53,7 +53,7 @@ const EarlyBirdForm = () => {
     resolver: zodResolver(formSchema),
     defaultValues: {
       email: "",
-      name: "",
+      fullName: "",
       userType: "iam",
     },
   });
@@ -86,7 +86,7 @@ const EarlyBirdForm = () => {
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
           <FormField
             control={form.control}
-            name="name"
+            name="fullName"
             render={({ field }) => (
               <FormItem>
                 <FormControl>
