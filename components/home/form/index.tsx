@@ -107,7 +107,7 @@ const EarlyBirdForm = () => {
         Join the Early Bird
       </h2>
       {submited === true ? (
-        <div className="flex flex-col items-center justify-center h-screen">
+        <div className="flex flex-col items-center justify-center py-10">
           <div className="bg-transparent p-8 rounded-lg shadow-md max-w-md w-full">
             <div className="text-center space-y-4">
               <CircleCheckIcon className="w-12 h-12 text-green-500 mx-auto" />
