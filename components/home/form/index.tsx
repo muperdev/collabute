@@ -108,15 +108,13 @@ const EarlyBirdForm = () => {
       </h2>
       {submited === true ? (
         <div className="flex flex-col items-center justify-center h-screen">
-          <div className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-md max-w-md w-full">
+          <div className="bg-transparent p-8 rounded-lg shadow-md max-w-md w-full">
             <div className="text-center space-y-4">
               <CircleCheckIcon className="w-12 h-12 text-green-500 mx-auto" />
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+              <h2 className="text-2xl font-bold text-gray-100">
                 Thanks for submitting your information!
               </h2>
-              <p className="text-gray-600 dark:text-gray-400">
-                We'll be in touch soon.
-              </p>
+              <p className="text-gray-400">We'll be in touch soon.</p>
             </div>
           </div>
         </div>
