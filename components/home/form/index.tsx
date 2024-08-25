@@ -48,7 +48,30 @@ const formSchema = z.object({
   userType: z.enum(["iam", "developer", "startup"]),
 });
 
+function CircleCheckIcon(
+  props: React.JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>
+) {
+  return (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <circle cx="12" cy="12" r="10" />
+      <path d="m9 12 2 2 4-4" />
+    </svg>
+  );
+}
+
 const EarlyBirdForm = () => {
+  const [submited, setSubmited] = React.useState(false);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -70,6 +93,7 @@ const EarlyBirdForm = () => {
     toast.promise(promise, {
       loading: "Loading...",
       success: (data) => {
+        setSubmited(true);
         return "your information has been submited";
       },
       error: "Error",
@@ -82,69 +106,85 @@ const EarlyBirdForm = () => {
       <h2 className="text-white text-4xl font-semibold w-full flex justify-center items-center mb-10">
         Join the Early Bird
       </h2>
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-          <FormField
-            control={form.control}
-            name="fullName"
-            render={({ field }) => (
-              <FormItem>
-                <FormControl>
-                  <Input placeholder="Name" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="email"
-            render={({ field }) => (
-              <FormItem>
-                <FormControl>
-                  <Input placeholder="Email" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="userType"
-            render={({ field }) => (
-              <FormItem>
-                <FormControl>
-                  <Select
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
-                  >
-                    <FormControl>
-                      <SelectTrigger>
-                        <SelectValue placeholder="I am ..." />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent defaultValue={"iam"}>
-                      {UserTypes.map(({ value, label }) => (
-                        <SelectItem key={value} value={value}>
-                          {label}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <Button
-            variant={"secondary"}
-            className="hover:bg-blue-400 bg-white text-blue-400 hover:text-white w-full"
-            type="submit"
-          >
-            Submit
-          </Button>
-        </form>
-      </Form>
+      {submited === true ? (
+        <div className="flex flex-col items-center justify-center h-screen">
+          <div className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-md max-w-md w-full">
+            <div className="text-center space-y-4">
+              <CircleCheckIcon className="w-12 h-12 text-green-500 mx-auto" />
+              <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+                Thanks for submitting your information!
+              </h2>
+              <p className="text-gray-600 dark:text-gray-400">
+                We'll be in touch soon.
+              </p>
+            </div>
+          </div>
+        </div>
+      ) : (
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+            <FormField
+              control={form.control}
+              name="fullName"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <Input placeholder="Name" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <Input placeholder="Email" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="userType"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <Select
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                    >
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="I am ..." />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent defaultValue={"iam"}>
+                        {UserTypes.map(({ value, label }) => (
+                          <SelectItem key={value} value={value}>
+                            {label}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <Button
+              variant={"secondary"}
+              className="hover:bg-blue-400 bg-white text-blue-400 hover:text-white w-full"
+              type="submit"
+            >
+              Submit
+            </Button>
+          </form>
+        </Form>
+      )}
     </div>
   );
 };
