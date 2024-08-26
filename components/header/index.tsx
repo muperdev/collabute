@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 const Header = () => {
   return (
-    <div className="flex justify-center items-center gap-x-10">
+    <div className="flex justify-center items-center gap-x-6">
       <a href="#early-bird" className="text-white">
         Early bird
       </a>
