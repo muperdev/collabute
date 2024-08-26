@@ -101,7 +101,7 @@ const EarlyBirdForm = () => {
   }
 
   return (
-    <div className="rounded-xl p-3 shadow text-white w-[350px] z-10 mt-10">
+    <div id="early-bird" className="rounded-xl p-3 shadow text-white w-[350px] z-10 mt-10">
       <Toaster />
       <h2 className="text-white text-4xl font-semibold w-full flex justify-center items-center mb-10">
         Join the Early Bird
@@ -175,7 +175,7 @@ const EarlyBirdForm = () => {
             />
             <Button
               variant={"secondary"}
-              className="hover:bg-blue-400 bg-white text-blue-400 hover:text-white w-full"
+              className="hover:bg-purple-400 bg-white text-purple-400 hover:text-white w-full"
               type="submit"
             >
               Submit

@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Space_Grotesk } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
+import Header from "@/components/header";
 
 const SpaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -20,7 +22,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={SpaceGrotesk.className}>{children}</body>
+      <body className={`${SpaceGrotesk.className}`}>
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }
