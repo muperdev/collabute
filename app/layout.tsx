@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Space_Grotesk } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
-import Header from "@/components/header";
 
 const SpaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -11,7 +10,7 @@ const SpaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "Contribunation",
+  title: `Contribunation - ${process.env.NEXT_PUBLIC_ENV}`,
   description: "Shake hands with startups and earn like never before!",
 };
 
