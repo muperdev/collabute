@@ -10,7 +10,7 @@ const SpaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: `Contribunation - ${process.env.NEXT_PUBLIC_ENV}`,
+  title: `Collabute - ${process.env.NEXT_PUBLIC_ENV}`,
   description: "Shake hands with startups and earn like never before!",
 };
 
