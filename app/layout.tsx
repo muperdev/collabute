@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import { Space_Grotesk } from "next/font/google";
+import { Poppins } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 
-const SpaceGrotesk = Space_Grotesk({
+const poppins = Poppins({
   subsets: ["latin"],
   weight: ["300", "400", "500", "700"],
-  variable: "--spaceGrotesk",
+  variable: "--poppins",
 });
 
 export const metadata: Metadata = {
@@ -21,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${SpaceGrotesk.className}`}>
+      <body className={`${poppins.className}`}>
         {children}
         <Analytics />
       </body>
