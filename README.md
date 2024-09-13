@@ -1,36 +1,56 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# AI Chat Assistant
+
+An intelligent chat assistant powered by advanced language models, built with modern web technologies.
+
+## Technologies Used
+
+- TypeScript
+- Next.js 14 (App Router)
+- React
+- Payload CMS v3
+- Shadcn UI
+- Radix UI
+- Tailwind CSS
 
 ## Getting Started
 
-First, run the development server:
+1. Clone the repository
+2. Install dependencies:
+   ```
+   pnpm install
+   ```
+3. Set up environment variables (see `.env.example`)
+4. Run the development server:
+   ```
+   pnpm dev
+   ```
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Project Structure
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- `app/`: Next.js app directory
+  - `auth/`: Authentication-related pages
+- `components/`: Reusable React components
+- `lib/`: Utility functions and shared code
+- `public/`: Static assets
+- `styles/`: Global styles and Tailwind configuration
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Key Features
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- AI-powered chat interface
+- User authentication with Payload CMS
+- Responsive design
+- Server-side rendering for optimal performance
 
-## Learn More
+## Contributing
 
-To learn more about Next.js, take a look at the following resources:
+1. Fork the repository
+2. Create a new branch: `git checkout -b feat/your-feature-name`
+3. Make your changes and commit them: `git commit -m 'Add some feature'`
+4. Push to the branch: `git push origin feat/your-feature-name`
+5. Submit a pull request
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Please ensure your code follows the project's coding standards and includes appropriate tests.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## License
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+This project is licensed under the MIT License.
