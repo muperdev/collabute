@@ -7,9 +7,7 @@ An intelligent chat assistant powered by advanced language models, built with mo
 - TypeScript
 - Next.js 14 (App Router)
 - React
-- Payload CMS v3
 - Shadcn UI
-- Radix UI
 - Tailwind CSS
 
 ## Getting Started
@@ -33,13 +31,6 @@ An intelligent chat assistant powered by advanced language models, built with mo
 - `lib/`: Utility functions and shared code
 - `public/`: Static assets
 - `styles/`: Global styles and Tailwind configuration
-
-## Key Features
-
-- AI-powered chat interface
-- User authentication with Payload CMS
-- Responsive design
-- Server-side rendering for optimal performance
 
 ## Contributing
 
