@@ -1,6 +1,6 @@
 import Header from "@/components/header";
 import Feature from "@/components/home/feature";
-import EarlyBirdForm from "@/components/home/form";
+import EarlyBirdForm from "@/components/home/early-bird";
 import Hero from "@/components/home/hero";
 import About from "@/components/home/about";
 
