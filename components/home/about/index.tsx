@@ -6,10 +6,10 @@ const About = () => {
     <section id="about" className="w-full py-6 md:py-10 lg:py-12 text-white">
       <div className="container px-4 md:px-6">
         <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-4xl text-center mb-4">
-          About Contribunation
+          About Collabute
         </h2>
         <p className="text-lg text-center text-gray-400 mb-8">
-          Contribunation is a platform that connects skilled developers with startups, 
+          Collabute is a platform that connects skilled developers with startups, 
           enabling meaningful contributions and fair compensation.
         </p>
         <div className="grid gap-8 md:grid-cols-3">
