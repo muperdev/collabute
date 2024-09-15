@@ -1,7 +1,3 @@
-# AI Chat Assistant
-
-An intelligent chat assistant powered by advanced language models, built with modern web technologies.
-
 ## Technologies Used
 
 - TypeScript
