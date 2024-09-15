@@ -18,6 +18,11 @@ const config = {
       },
     },
     extend: {
+      colors: {
+        primary: "#0A0F14",
+        secondary: "#ffffff",
+        accent: "#930CFE",
+      },
       keyframes: {
         meteor: {
           "0%": { transform: "rotate(215deg) translateX(0)", opacity: "1" },
