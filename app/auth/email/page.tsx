@@ -40,7 +40,7 @@ const AuthEmail = () => {
     const promise = () =>
       axios
         .post(
-          `${process.env.NEXT_PUBLIC_API_URL}/api/users/validation`,
+          `${process.env.NEXT_PUBLIC_API_URL}/api/validation`,
           values,
           {
             headers: {
