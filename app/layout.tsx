@@ -10,7 +10,7 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: `Collabute - ${process.env.NEXT_PUBLIC_ENV}`,
+  title: `Collabute`,
   description: "Shake hands with startups and earn like never before!",
 };
 
