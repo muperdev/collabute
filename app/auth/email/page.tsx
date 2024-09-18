@@ -40,13 +40,8 @@ const AuthEmail = () => {
     const promise = () =>
       axios
         .post(
-          `${process.env.NEXT_PUBLIC_API_URL}/api/validation`,
+          `${process.env.NEXT_PUBLIC_API_URL}/api/validator`,
           values,
-          {
-            headers: {
-              'Access-Control-Allow-Origin': 'http://localhost:3000',
-            },
-          }
         )
         .then((res) => res.data)
         .catch((err) => {
