@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -15,47 +15,36 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useRouter } from "next/navigation";
-import { Toaster, toast } from "sonner";
+import { Toaster } from "sonner";
 import axios from "axios";
-import { Eye, EyeOff } from "lucide-react"; // Add this import
-
+import { useEmail } from "@/app/context/EmailContext";
+import Image from "next/image";
 const formSchema = z.object({
   email: z.string().email({ message: "Invalid email address" }),
-  // password: z
-  //   .string()
-  //   .min(8, { message: "Password must be at least 8 characters" }),
 });
 
 const AuthEmail = () => {
   const router = useRouter();
+  const { setEmail } = useEmail();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       email: "",
     },
   });
-  const [showPassword, setShowPassword] = useState(false);
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    const promise = () =>
-      axios
-        .post(
-          `${process.env.NEXT_PUBLIC_API_URL}/api/validator`,
-          values,
-        )
-        .then((res) => res.data)
-        .catch((err) => {
-          throw err.response?.data || new Error("Sign-up failed");
-        });
-
-    toast.promise(promise, {
-      loading: "Checking account...",
-      success: () => {
-        toast.success("Account found!");
-        return "Account found!";
-      },
-      error: (err) => `Error: ${err.message || "Something went wrong"}`,
-    });
+    setEmail(values.email);
+    axios
+      .post(`${process.env.NEXT_PUBLIC_API_URL}/api/validator`, values)
+      .then((res) => {
+        router.push("/auth/create-account");
+      })
+      .catch((err) => {
+        if (err.response?.status === 400) {
+          router.push("/auth/password");
+        }
+      });
   }
 
   return (
@@ -63,7 +52,7 @@ const AuthEmail = () => {
       <Toaster />
       <div className="flex flex-col items-center justify-center gap-y-16 px-[80px] w-[500px] py-[90px] text-center border border-slate-200 rounded-md">
         <div className="flex flex-col items-center justify-center gap-y-2">
-          <p className="text-black font-light">Welcome to</p>
+          <Image src="/logo.svg" alt="logo" width={66} height={66} />
           <h1 className="text-3xl font-bold">Collabute</h1>
         </div>
         <Form {...form}>
@@ -84,36 +73,6 @@ const AuthEmail = () => {
                 </FormItem>
               )}
             />
-            {/* <FormField
-              control={form.control}
-              name="password"
-              render={({ field }) => (
-                <FormItem className="flex flex-col items-start justify-center">
-                  <FormLabel>Password</FormLabel>
-                  <FormControl>
-                    <div className="relative w-full">
-                      <Input
-                        type={showPassword ? "text" : "password"}
-                        placeholder="Enter your password"
-                        {...field}
-                      />
-                      <button
-                        type="button"
-                        className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600"
-                        onClick={() => setShowPassword(!showPassword)}
-                      >
-                        {showPassword ? (
-                          <EyeOff className="h-5 w-5" />
-                        ) : (
-                          <Eye className="h-5 w-5" />
-                        )}
-                      </button>
-                    </div>
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            /> */}
             <Button variant="secondary" type="submit" className="w-full">
               Continue
             </Button>
