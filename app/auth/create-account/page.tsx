@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { Toaster } from "sonner";
-import { Eye, EyeOff, Building, Code2 } from "lucide-react";
+import { Eye, EyeOff, Building, Code2, Loader2 } from "lucide-react";
 import {
   Form,
   FormControl,
@@ -74,6 +74,7 @@ const formSchema = z.object({
 const CreateAccount = () => {
   const { email, setEmail } = useEmail();
   const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -86,6 +87,7 @@ const CreateAccount = () => {
   const accountType = form.watch("type");
   const router = useRouter();
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    setIsLoading(true);
     toast.promise(
       axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/users/create`, values),
       {
@@ -93,9 +95,11 @@ const CreateAccount = () => {
         success: (response) => {
           setEmail(values.email);
           router.push(`/auth/password`);
+          setIsLoading(false);
           return "Account created successfully. Please log in.";
         },
         error: (error) => {
+          setIsLoading(false);
           if (axios.isAxiosError(error) && error.response) {
             return `Error: ${error.response.data.message || "Failed to create account"}`;
           }
@@ -334,8 +338,15 @@ const CreateAccount = () => {
                 </>
               )}
             </div>
-            <Button type="submit" className="w-full mt-6">
-              Create Account
+            <Button type="submit" className="w-full mt-6" disabled={isLoading}>
+              {isLoading ? (
+                <>
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  Creating Account...
+                </>
+              ) : (
+                "Create Account"
+              )}
             </Button>
           </form>
         </Form>

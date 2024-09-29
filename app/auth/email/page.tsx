@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -15,10 +15,12 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useRouter } from "next/navigation";
-import { Toaster } from "sonner";
+import { Toaster, toast } from "sonner";
 import axios from "axios";
 import { useEmail } from "@/app/context/EmailContext";
 import Image from "next/image";
+import { Loader2 } from "lucide-react";
+
 const formSchema = z.object({
   email: z.string().email({ message: "Invalid email address" }),
 });
@@ -26,6 +28,8 @@ const formSchema = z.object({
 const AuthEmail = () => {
   const router = useRouter();
   const { setEmail } = useEmail();
+  const [isLoading, setIsLoading] = useState(false);
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -33,18 +37,21 @@ const AuthEmail = () => {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    setIsLoading(true);
     setEmail(values.email);
-    axios
-      .post(`${process.env.NEXT_PUBLIC_API_URL}/api/validator`, values)
-      .then((res) => {
-        router.push("/auth/create-account");
-      })
-      .catch((err) => {
-        if (err.response?.status === 400) {
-          router.push("/auth/password");
-        }
-      });
+    try {
+      await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/validator`, values);
+      router.push("/auth/create-account");
+    } catch (err) {
+      if (axios.isAxiosError(err) && err.response?.status === 400) {
+        router.push("/auth/password");
+      } else {
+        toast.error("An error occurred. Please try again.");
+      }
+    } finally {
+      setIsLoading(false);
+    }
   }
 
   return (
@@ -73,8 +80,15 @@ const AuthEmail = () => {
                 </FormItem>
               )}
             />
-            <Button variant="secondary" type="submit" className="w-full">
-              Continue
+            <Button variant="secondary" type="submit" className="w-full" disabled={isLoading}>
+              {isLoading ? (
+                <>
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  Please wait
+                </>
+              ) : (
+                "Continue"
+              )}
             </Button>
           </form>
         </Form>
