@@ -41,7 +41,7 @@ const AuthEmail = () => {
     setIsLoading(true);
     setEmail(values.email);
     try {
-      await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/validator`, values);
+      await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/users/validator`, values);
       router.push("/auth/create-account");
     } catch (err) {
       if (axios.isAxiosError(err) && err.response?.status === 400) {
