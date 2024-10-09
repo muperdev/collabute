@@ -7,8 +7,8 @@ const Header = () => {
       <a href="#early-bird" className="text-white">
         Early bird
       </a>
-      <Link className="animate-pulse" href={"/"}>
-        <Image alt="" src={"/contribunation.png"} width={50} height={100} />
+      <Link href={"/"}>
+        <Image alt="" src={"/logo.svg"} width={50} height={50} />
       </Link>
       <a href="#features" className="text-white">
         Features
