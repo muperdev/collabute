@@ -20,6 +20,7 @@ const config = {
     extend: {
       colors: {
         primary: "#7300FF",
+        primary2: "#A154FF",
         secondary: "#ffffff",
         primaryLowOpacity: "#daabff33",
         accent: "#930CFE",
