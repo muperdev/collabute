@@ -19,8 +19,9 @@ const config = {
     },
     extend: {
       colors: {
-        primary: "#0A0F14",
+        primary: "#7300FF",
         secondary: "#ffffff",
+        primaryLowOpacity: "#daabff33",
         accent: "#930CFE",
       },
       keyframes: {

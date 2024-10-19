@@ -27,7 +27,7 @@ const Auth = () => {
             Continue with GitLab
           </Button>
           <Button
-            onClick={() => router.push("/auth/email")}
+            onClick={() => router.push("/auth/password")}
             className="w-full gap-x-2 bg-transparent border border-[#930CFE] text-[#930CFE]"
           >
             Continue with Email
