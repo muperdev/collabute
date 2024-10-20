@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import { PluginAPI } from "tailwindcss/types/config";
 
 const config = {
   darkMode: ["class"],
@@ -19,9 +20,10 @@ const config = {
     },
     extend: {
       colors: {
-        primary: "#0A0F14",
-        secondary: "#ffffff",
-        accent: "#930CFE",
+        primary: {
+          light: "#7300FF",
+          dark: "#D4B0FF",
+        },
       },
       keyframes: {
         meteor: {
@@ -48,7 +50,51 @@ const config = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  variants: {
+    extend: {
+      backgroundColor: ["dark"],
+      textColor: ["dark"],
+    },
+  },
+
+  plugins: [
+    require("tailwindcss-animate"),
+    function ({ addBase, theme }: PluginAPI) {
+      const colors = theme("colors") as Record<
+        string,
+        { light: string; dark: string }
+      >;
+
+      const baseStyles: Record<
+        string,
+        Record<string, string | Record<string, string>>
+      > = {};
+
+      // Loop through the colors and set light and dark modes dynamically using the 'dark' class
+      Object.entries(colors).forEach(([colorName, colorValue]) => {
+        if (
+          typeof colorValue === "object" &&
+          colorValue.light &&
+          colorValue.dark
+        ) {
+          baseStyles[`.bg-${colorName}`] = {
+            backgroundColor: colorValue.light,
+            ".dark &": {
+              backgroundColor: colorValue.dark,
+            },
+          };
+          baseStyles[`.text-${colorName}`] = {
+            color: colorValue.light,
+            ".dark &": {
+              color: colorValue.dark,
+            },
+          };
+        }
+      });
+
+      addBase(baseStyles);
+    },
+  ],
 } satisfies Config;
 
 export default config;

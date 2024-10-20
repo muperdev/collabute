@@ -29,7 +29,7 @@ const formSchema = z.object({
     .min(8, { message: "Password must be at least 8 characters" }),
 });
 
-const Password = () => {
+const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
   const { email } = useEmail();
@@ -50,7 +50,8 @@ const Password = () => {
         success: (res) => {
           // Assuming the server sets HttpOnly cookies for us
           setCookie("token", res.data.token);
-          setCookie("userid", res.data.user.id);
+          localStorage.setItem("token", res.data.token);
+          localStorage.setItem("userID", res.data.user.id);
           // Set a flag in a cookie to indicate the user is logged in
           setCookie("isLoggedIn", "true");
 
@@ -131,4 +132,4 @@ const Password = () => {
   );
 };
 
-export default Password;
+export default Login;

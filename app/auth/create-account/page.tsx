@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { useEmail } from "@/app/context/EmailContext";
+import { useEmail } from "@/app/providers/EmailContext";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -101,7 +101,9 @@ const CreateAccount = () => {
         error: (error) => {
           setIsLoading(false);
           if (axios.isAxiosError(error) && error.response) {
-            return `Error: ${error.response.data.message || "Failed to create account"}`;
+            return `Error: ${
+              error.response.data.message || "Failed to create account"
+            }`;
           }
           return "An unexpected error occurred. Please try again.";
         },

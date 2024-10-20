@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
-import { EmailProvider } from "./context/EmailContext";
+import { EmailProvider } from "./providers/EmailContext";
+import { ThemeProvider } from "./providers/ThemeProvider";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -23,7 +24,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${poppins.className}`}>
-        <EmailProvider>{children}</EmailProvider>
+        <EmailProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {children}
+          </ThemeProvider>
+        </EmailProvider>
         <Analytics />
       </body>
     </html>
