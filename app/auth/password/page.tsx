@@ -17,7 +17,7 @@ import { Input } from "@/components/ui/input";
 import { useRouter } from "next/navigation";
 import { Toaster } from "sonner";
 import axios from "axios";
-import { useEmail } from "@/app/context/EmailContext";
+import { useEmail } from "@/app/providers/EmailContext";
 import { Eye, EyeOff } from "lucide-react";
 import { toast } from "sonner";
 import { setCookie } from "cookies-next";
