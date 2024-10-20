@@ -30,12 +30,14 @@ const ProjectPage = () => {
           <div className="flex items-center justify-start gap-4">
             <h3 className="font-medium text-black">Project title</h3>
             <Badge
+              className="font-medium"
               icon={<GitPullRequest className="h-4 w-4 text-primary2" />}
               variant="outline"
             >
               32 issues
             </Badge>
             <Badge
+              className="font-medium"
               icon={<DollarSign className="h-4 w-4 text-primary2" />}
               variant="outline"
             >
@@ -43,6 +45,7 @@ const ProjectPage = () => {
               <span className="text-xs">$100,000</span>
             </Badge>
             <Badge
+              className="font-medium"
               icon={<Clock9 className="h-4 w-4 text-primary2" />}
               variant="outline"
             >
@@ -51,6 +54,7 @@ const ProjectPage = () => {
               <span className="text-xs">50%</span>
             </Badge>
             <Badge
+              className="font-medium"
               icon={<Users className="h-4 w-4 text-primary2" />}
               variant="outline"
             >
